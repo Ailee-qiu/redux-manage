@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { PostAuthor } from './PostAuthor'
-import { TimeAgo } from './TimeAgo'
-import { ReactionButtons } from './ReactionButtons'
-import { fetchPosts, selectAllPosts } from './postsSlice'
 import { Spinner } from '../../components/Spinner'
+import { PostAuthor } from './PostAuthor'
+import { ReactionButtons } from './ReactionButtons'
+import { TimeAgo } from './TimeAgo'
+import { fetchPosts, selectAllPosts } from './postsSlice'
 const PostExcerpt = ({ post }) => {
   return (
     <article className="post-excerpt" key={post.id}>
@@ -44,6 +44,8 @@ export const PostsList = () => {
     content = orderedPosts.map(post => (
       <PostExcerpt post={post} key={post.id} />
     ))
+  }else if(postStatus === 'failed'){
+    content = <div>{error}</div>
   }
   return (
     <section className="posts-list">
